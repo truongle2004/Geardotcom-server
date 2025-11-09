@@ -57,4 +57,3 @@ export class Product extends BaseEntity {
   @Column({ default: true })
   available: boolean;
 }
-

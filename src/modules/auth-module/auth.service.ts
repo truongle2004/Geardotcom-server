@@ -26,7 +26,7 @@ export class AuthService {
    */
   hasAnyRole(payload: any, roles: string[]): boolean {
     const userRoles = this.getRoles(payload);
-    return roles.some(role => userRoles.includes(role));
+    return roles.some((role) => userRoles.includes(role));
   }
 
   /**
@@ -34,7 +34,7 @@ export class AuthService {
    */
   hasAllRoles(payload: any, roles: string[]): boolean {
     const userRoles = this.getRoles(payload);
-    return roles.every(role => userRoles.includes(role));
+    return roles.every((role) => userRoles.includes(role));
   }
 
   /**
@@ -51,4 +51,3 @@ export class AuthService {
     return payload.preferred_username || payload.email || payload.sub || '';
   }
 }
-

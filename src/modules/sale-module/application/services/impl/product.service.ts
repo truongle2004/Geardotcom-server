@@ -3,12 +3,21 @@ import { ConfigService } from '@nestjs/config';
 
 import type { IProductRepository } from 'src/modules/sale-module/infrastructure/repositories/product.repository.interface';
 import type { IProductImageRepository } from 'src/modules/sale-module/infrastructure/repositories/product-image.repository.interface';
-import type { IProductService, PaginatedResult } from 'src/modules/sale-module/application/services/product.service.interface';
+import type {
+  IProductService,
+  PaginatedResult,
+} from 'src/modules/sale-module/application/services/product.service.interface';
 import { ProductQueryDto } from 'src/domain/requests/product-query.dto';
-import { ProductResponseDto, CategoryResponseDto, VendorResponseDto } from 'src/domain/response/product.response.dto';
+import {
+  ProductResponseDto,
+  CategoryResponseDto,
+  VendorResponseDto,
+} from 'src/domain/response/product.response.dto';
 
 export const PRODUCT_REPOSITORY_TOKEN = Symbol('PRODUCT_REPOSITORY');
-export const PRODUCT_IMAGE_REPOSITORY_TOKEN = Symbol('PRODUCT_IMAGE_REPOSITORY');
+export const PRODUCT_IMAGE_REPOSITORY_TOKEN = Symbol(
+  'PRODUCT_IMAGE_REPOSITORY',
+);
 export const PRODUCT_SERVICE_TOKEN = Symbol('PRODUCT_SERVICE');
 
 @Injectable()
@@ -157,8 +166,10 @@ export class ProductService implements IProductService {
   ): Promise<PaginatedResult<ProductResponseDto>> {
     const page = query.page || 0;
     const limit = query.limit || 10;
-    const [products, total] =
-      await this.productRepository.findTopRatedProducts(page, limit);
+    const [products, total] = await this.productRepository.findTopRatedProducts(
+      page,
+      limit,
+    );
 
     const productDtos = await Promise.all(
       products.map(async (product) => {
@@ -235,4 +246,3 @@ export class ProductService implements IProductService {
     };
   }
 }
-

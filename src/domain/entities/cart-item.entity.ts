@@ -12,4 +12,3 @@ export class CartItem extends BaseEntity {
   @Column({ nullable: false })
   quantity: number;
 }
-

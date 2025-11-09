@@ -15,4 +15,3 @@ export class ProductImage extends BaseEntity {
   @Column({ default: 0 })
   position: number;
 }
-

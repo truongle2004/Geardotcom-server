@@ -24,4 +24,3 @@ export class ProductCategory extends BaseEntity {
   @Column({ name: 'product_count', default: 0 })
   productCount: number;
 }
-

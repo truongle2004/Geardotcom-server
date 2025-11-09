@@ -17,4 +17,3 @@ import { AuthController } from './auth.controller';
   exports: [PassportModule, AuthService],
 })
 export class AuthModule {}
-

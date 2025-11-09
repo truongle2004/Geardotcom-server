@@ -15,4 +15,3 @@ export class CouponUsage extends BaseEntity {
   @Column({ name: 'used_at', type: 'timestamp', nullable: true })
   usedAt: Date;
 }
-

@@ -12,4 +12,3 @@ export class WarehouseDetail extends BaseEntity {
   @Column({ nullable: false })
   stock: number;
 }
-

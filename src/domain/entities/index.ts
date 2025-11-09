@@ -14,4 +14,3 @@ export * from './warehouse.entity';
 export * from './warehouse-detail.entity';
 export * from './wishlist.entity';
 export * from './wishlist-item.entity';
-

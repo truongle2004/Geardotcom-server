@@ -30,4 +30,3 @@ export class Order extends BaseEntity {
   })
   status: OrderStatus;
 }
-

@@ -78,7 +78,10 @@ export class ProductRepository implements IProductRepository {
     });
   }
 
-  async findBestSellers(page: number, limit: number): Promise<[Product[], number]> {
+  async findBestSellers(
+    page: number,
+    limit: number,
+  ): Promise<[Product[], number]> {
     return this.productRepo.findAndCount({
       where: { available: true },
       order: { soleQuantity: 'DESC' },
@@ -87,7 +90,10 @@ export class ProductRepository implements IProductRepository {
     });
   }
 
-  async findFeaturedProducts(page: number, limit: number): Promise<[Product[], number]> {
+  async findFeaturedProducts(
+    page: number,
+    limit: number,
+  ): Promise<[Product[], number]> {
     return this.productRepo.findAndCount({
       where: { available: true },
       order: { averageRating: 'DESC', reviewCount: 'DESC' },
@@ -96,7 +102,10 @@ export class ProductRepository implements IProductRepository {
     });
   }
 
-  async findTopRatedProducts(page: number, limit: number): Promise<[Product[], number]> {
+  async findTopRatedProducts(
+    page: number,
+    limit: number,
+  ): Promise<[Product[], number]> {
     return this.productRepo.findAndCount({
       where: { available: true },
       order: { averageRating: 'DESC', reviewCount: 'DESC' },
@@ -158,4 +167,3 @@ export class ProductRepository implements IProductRepository {
     return queryBuilder.getManyAndCount();
   }
 }
-

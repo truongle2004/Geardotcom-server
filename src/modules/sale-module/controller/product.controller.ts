@@ -64,9 +64,9 @@ export class ProductController {
       const result = await this.productService.getAllProductCategory();
       return new ApiResponseDto(result, HttpStatus.OK);
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-    return null
+    return null;
   }
 
   @Get('vendors')
@@ -110,11 +110,10 @@ export class ProductController {
   @ApiOperation({ summary: 'Get product image' })
   @ApiResponse({ status: 200, description: 'Success' })
   @ApiResponse({ status: 404, description: 'Image not found' })
-  async getImage(
-    @Param('filename') filename: string,
-    @Res() res: Response,
-  ) {
-    const imageDir = process.env.FILE_UPLOAD_DIR || 'C:\\my_workspace\\Geardotcom_server\\images';
+  async getImage(@Param('filename') filename: string, @Res() res: Response) {
+    const imageDir =
+      process.env.FILE_UPLOAD_DIR ||
+      'C:\\my_workspace\\Geardotcom_server\\images';
     const imagePath = path.join(imageDir, filename);
 
     if (!fs.existsSync(imagePath)) {
@@ -128,4 +127,3 @@ export class ProductController {
     return res.sendFile(imagePath);
   }
 }
-

@@ -12,4 +12,3 @@ export class OrderItem extends BaseEntity {
   @Column({ nullable: false })
   quantity: number;
 }
-

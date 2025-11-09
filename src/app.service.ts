@@ -6,4 +6,3 @@ export class AppService {
     return 'GearDotCom API is running!';
   }
 }
-

@@ -15,4 +15,3 @@ export interface IProductImageRepository {
     fileUploadUrl: string,
   ): Promise<ProductImageDto | null>;
 }
-

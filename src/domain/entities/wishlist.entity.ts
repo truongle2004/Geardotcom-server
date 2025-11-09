@@ -6,4 +6,3 @@ export class Wishlist extends BaseEntity {
   @Column({ name: 'user_id', nullable: false })
   userId: string;
 }
-

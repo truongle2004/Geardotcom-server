@@ -9,4 +9,3 @@ export class WishlistItem extends BaseEntity {
   @Column({ name: 'product_id', nullable: false })
   productId: number;
 }
-

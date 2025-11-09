@@ -33,4 +33,3 @@ export interface IProductRepository {
     maxPrice?: number,
   ): Promise<[Product[], number]>;
 }
-

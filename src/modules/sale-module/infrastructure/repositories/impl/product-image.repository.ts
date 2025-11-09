@@ -49,4 +49,3 @@ export class ProductImageRepository implements IProductImageRepository {
     };
   }
 }
-

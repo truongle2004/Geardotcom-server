@@ -5,7 +5,7 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  
+
   // Enable global validation
   app.useGlobalPipes(
     new ValidationPipe({
@@ -37,7 +37,7 @@ async function bootstrap() {
       'JWT-auth', // This name here is important for matching up with @ApiBearerAuth() in your controller!
     )
     .build();
-  
+
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 

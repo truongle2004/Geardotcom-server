@@ -8,4 +8,3 @@ export default registerAs('keycloak', () => ({
   issuer: `${process.env.KEYCLOAK_SERVER_URL || 'http://localhost:9000'}/realms/${process.env.KEYCLOAK_REALM || 'geardotcom'}`,
   publicKey: process.env.KEYCLOAK_PUBLIC_KEY || '',
 }));
-

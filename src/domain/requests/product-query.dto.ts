@@ -47,4 +47,3 @@ export class ProductQueryDto {
   @IsString()
   q?: string;
 }
-

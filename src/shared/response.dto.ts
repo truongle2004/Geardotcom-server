@@ -23,4 +23,3 @@ export class ApiResponseDto<T> {
     this.httpStatus = httpStatus;
   }
 }
-

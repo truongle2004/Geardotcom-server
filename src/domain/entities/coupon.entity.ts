@@ -75,4 +75,3 @@ export class Coupon extends BaseEntity {
   })
   requiredOrderTotal: number;
 }
-

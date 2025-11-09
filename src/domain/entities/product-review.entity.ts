@@ -27,4 +27,3 @@ export class ProductReview extends BaseEntity {
   @Column({ name: 'helpful_count', default: 0 })
   helpfulCount: number;
 }
-

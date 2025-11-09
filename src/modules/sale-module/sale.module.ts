@@ -8,7 +8,12 @@ import {
 } from '../../domain/entities';
 import { ProductRepository } from './infrastructure/repositories/impl/product.repository';
 import { ProductImageRepository } from './infrastructure/repositories/impl/product-image.repository';
-import { ProductService, PRODUCT_REPOSITORY_TOKEN, PRODUCT_IMAGE_REPOSITORY_TOKEN, PRODUCT_SERVICE_TOKEN } from './application/services/impl/product.service';
+import {
+  ProductService,
+  PRODUCT_REPOSITORY_TOKEN,
+  PRODUCT_IMAGE_REPOSITORY_TOKEN,
+  PRODUCT_SERVICE_TOKEN,
+} from './application/services/impl/product.service';
 import { ProductController } from './controller/product.controller';
 
 @Module({

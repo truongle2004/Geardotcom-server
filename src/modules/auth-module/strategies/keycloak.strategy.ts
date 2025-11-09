@@ -39,7 +39,11 @@ export class KeycloakStrategy extends PassportStrategy(Strategy, 'jwt') {
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
       // Use provider to satisfy StrategyOptions typing and fetch signing key per token
-      secretOrKeyProvider: (request: any, rawJwtToken: string, done: (err: any, secret?: string) => void) => {
+      secretOrKeyProvider: (
+        request: any,
+        rawJwtToken: string,
+        done: (err: any, secret?: string) => void,
+      ) => {
         try {
           if (publicKey) {
             return done(null, publicKey);
@@ -52,7 +56,9 @@ export class KeycloakStrategy extends PassportStrategy(Strategy, 'jwt') {
 
           client.getSigningKey(kid, (err, key: any) => {
             if (err) return done(err);
-            const signingKey = key.getPublicKey ? key.getPublicKey() : key.publicKey || key.rsaPublicKey;
+            const signingKey = key.getPublicKey
+              ? key.getPublicKey()
+              : key.publicKey || key.rsaPublicKey;
             return done(null, signingKey);
           });
         } catch (e) {
@@ -82,4 +88,3 @@ export class KeycloakStrategy extends PassportStrategy(Strategy, 'jwt') {
     };
   }
 }
-
