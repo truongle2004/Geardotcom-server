@@ -1,0 +1,6 @@
+{
+  "themes": [{
+    "name" : "geardotcom",
+    "types": [ "login" ]
+  }]
+}

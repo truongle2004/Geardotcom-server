@@ -1,0 +1,87 @@
+services:
+  api:
+    image: node:20-alpine
+    container_name: geardotcom-api
+    working_dir: /usr/src/app
+    command: sh -c "npm install --legacy-peer-deps && npm run start:dev"
+    ports:
+      - "3000:3000"
+    environment:
+      # Database
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: root
+      DATABASE_NAME: geardotcom
+      NODE_ENV: development
+      TZ: Asia/Ho_Chi_Minh
+      # Keycloak
+      KEYCLOAK_REALM: geardotcom
+      KEYCLOAK_SERVER_URL: http://keycloak:9000
+      KEYCLOAK_CLIENT_ID: geardotcom-client
+      # App
+      PORT: 3000
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      postgres:
+        condition: service_healthy
+      keycloak:
+        condition: service_started
+    networks:
+      - ecommerce-network
+  postgres:
+    image: postgres:16.3
+    container_name: geardotcom-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: geardotcom
+      TZ: Asia/Ho_Chi_Minh
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - ecommerce-network
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:21.0.2
+    container_name: geardotcom-keycloak
+    command: ['start-dev --import-realm']
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_PROXY: none
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres:5432/geardotcom
+      KC_DB_USERNAME: postgres
+      KC_DB_PASSWORD: root
+      KC_HTTP_PORT: 9000
+      TZ: Asia/Ho_Chi_Minh
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./identity/themes/geardotcom/theme:/opt/keycloak/themes
+      - ./identity/realm-export.json:/opt/keycloak/data/import/realm-export.json
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - ecommerce-network
+
+networks:
+  ecommerce-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
+
